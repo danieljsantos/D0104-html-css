@@ -9,9 +9,13 @@ body{
 .grid{
     display: grid;
     grid-template-areas: 
-    "header header header header header";
+    "header header header header header"
+    "sidebar sidebar sidebar sidebar sidebar"
+    "main main main main main";
+    /* Cria 5 colunas com 1/5 do todo */
     grid-template-columns: repeat(5, 1fr);
-    /* Minmax determina um valor máximo e um valor mínimo, 
+    /* Cria 5 linhas.
+     Minmax determina um valor máximo e um valor mínimo, 
     no exemplo abaixo a linha possui 100 de valor mínimo e valor máximo automático */
     grid-template-rows: repeat(5, minmax(30px,auto));
 }
@@ -43,6 +47,11 @@ header nav a{
     color: blue;
 }
 
+/*  Seletor main */
+main{
+    grid-area: main;
+}
+
 /* Classe menu-hamburguer */
 .menu-hamburguer{
     /* Alinha os itens no centro */
@@ -53,6 +62,23 @@ header nav a{
     flex-direction: column;
     justify-content: center;
     width: 30px;
+}
+
+.sidebar{
+    background-color: white;
+    grid-area: sidebar;
+    padding: 30px 0;
+}
+
+.sidebar nav{
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.sidebar nav a{
+    color: black;
+    text-decoration: none;
 }
 
 /*  Classe traço */
@@ -73,7 +99,7 @@ header nav a{
 /* Query media: Essa parte do código só irá ser executada quando a condição for atendida,
 no exemplo abaixo quando a largura for superior a 900 pixels o menu de hamburger irá desaparecer
 e a nav irá aparecer  */
-@media(min-width:900px){
+/* @media(min-width:900px){
     
     header nav {
         display: block;
@@ -83,4 +109,50 @@ e a nav irá aparecer  */
         display: none;
     }
 
+} */
+
+/* Breakpoint para tablet */
+@media(min-width:768px){
+    
+    header nav {
+        display: flex;
+    }
+    
+    .menu-hamburguer{
+        display: none;
+    }
+
+    
+
+}
+
+/*  Brealpoint para notebooks pequenos */
+@media(min-width:992px){
+    .grid{
+        grid-template-areas: 
+        "header header header header header"
+        "main main main . sidebar"
+        "main main main . sidebar";
+    
+    }
+
+    .sidebar{
+        border-radius: 25px;
+        box-shadow: 1px 1px 15px 2px rgba(0, 0, 0, 0.1);
+        margin: 5px;
+    }
+
+    .sidebar nav{
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+/* Breakpoint para notebooks grandes e desktops */
+@media(min-width:1200px){
+    
+    main{
+        margin: auto;   /* Coloca a mesma margem em todos os lados, por conta disso os elementos ficam centralizados na página*/
+        max-width: 1200px;  /* Limita a largura da página a 1200 pixels */
+    }
 }
