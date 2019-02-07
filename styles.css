@@ -1,0 +1,86 @@
+/* Seletor body */
+body{
+    /* Cor de fundo da página */
+    background-color: lightgray;
+    /* Sem espaço nos quatro cantos */
+    margin: 0;
+}
+/* Classe grid */
+.grid{
+    display: grid;
+    grid-template-areas: 
+    "header header header header header";
+    grid-template-columns: repeat(5, 1fr);
+    /* Minmax determina um valor máximo e um valor mínimo, 
+    no exemplo abaixo a linha possui 100 de valor mínimo e valor máximo automático */
+    grid-template-rows: repeat(5, minmax(30px,auto));
+}
+
+/* Seletor header */
+header{
+    /* Alinha os itens no centro */
+    align-items: center;
+    display: flex;
+    grid-area: header;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+/* Seletor multiplo header e nav.
+O header é pai da nav */
+header nav{
+    display: none;
+}
+/* Seleciona o primeiro a que está dentro do nav filho do header */
+header nav a:nth-child(1){
+    font-size: 14pt;
+    color: green;
+}
+/* Seletor multiplo.
+A é filho do nav que é filho do header */
+header nav a{
+    text-decoration: none;
+    color: blue;
+}
+
+/* Classe menu-hamburguer */
+.menu-hamburguer{
+    /* Alinha os itens no centro */
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    /*flex-direction Alinha um elemento em cima do outro */
+    flex-direction: column;
+    justify-content: center;
+    width: 30px;
+}
+
+/*  Classe traço */
+.traco{
+    /* Define a cor como preto */
+    background-color: black;
+    /* Arredonda os cantos */
+    border-radius: 50px;
+    /* Altura */
+    height: 3px;
+    /* Margem com uma distancia de 3 pixels na parte inferior e superior da página
+    e uma distancia de 0 pixel aos lados da página */
+    margin: 3px 0;
+    /* Largura */
+    width: 100%;
+}
+
+/* Query media: Essa parte do código só irá ser executada quando a condição for atendida,
+no exemplo abaixo quando a largura for superior a 900 pixels o menu de hamburger irá desaparecer
+e a nav irá aparecer  */
+@media(min-width:900px){
+    
+    header nav {
+        display: block;
+    }
+    
+    .menu-hamburguer{
+        display: none;
+    }
+
+}
